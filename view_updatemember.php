@@ -1,0 +1,62 @@
+<?php
+    require("controller_member.php"); 
+    if (isset($_GET['updateID'])) {
+        $member_id = $_GET['updateID'];
+        $member = getMemberWithId($_GET['updateID']);
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Membership</title>
+</head>
+<body>
+    <div class="container p-3">
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_member.php">Member List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view_addmember.php">Add Member</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h1>Update Member</h1>
+                <form method="POST" action="controller_member.php" class="w-75 mx-auto">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="inputName" class="form-label">Name</label>
+                            <input type="text" class="form-control" name="inputName" value="<?php echo $member->name; ?>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="inputPhone" class="form-label">Phone</label>
+                            <input type="text" class="form-control" name="inputPhone" value="<?php echo $member->phone; ?>">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="inputEmail" value="<?php echo $member->email; ?>">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label for="inputNote" class="form-label">Note</label>
+                            <input type="text" class="form-control" name="inputNote" value="<?php echo $member->note; ?>">
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="input_id" value="<?= $member_id ?>">
+                    <button name="button_update" type="submit" class="btn btn-primary mt-3">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
